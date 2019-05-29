@@ -5,10 +5,10 @@
 /* Adding background image to jumbotron. Code reference: https://www.youtube.com/watch?v=xbHvjWYDHkg */
 .big-banner {
   background-image: url("../images/Tree_Background_grey.jpg");
-  /* padding-top: 10 px !important; */
   font-family: "Schoolbell", cursive;
-}
-h4 {
+  }
+
+h2 {
   font-family: "Schoolbell", cursive;
   font-family: "Pragati Narrow", sans-serif;
   font-family: "Noto Sans JP", sans-serif;
@@ -31,6 +31,10 @@ h4 {
 
 .btn-success:hover {
     background-color: rgb(31, 71, 31);
+}
+
+ul {
+    font-size: .95em;
 }
 
 footer {

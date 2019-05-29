@@ -3,7 +3,7 @@ window.onload = function() {
   $("#start-btn").on("click", start); // Start the timer when the first answer is selected.
 };
 
-var timerCount = 60; // Start the timer at 60 seconds.
+var timerCount = 45; // Start the timer at 60 seconds.
 var intervalId; // Set intervalId variable to store output of each decrement
 
 function start() {
@@ -110,7 +110,9 @@ for (let i = 0; i < questions.length; i++) {
   newDiv.html(questions[i].Q);
   $("#showQandA").append(newDiv);
 
-  /* Execute a sub-loop iterations [k] through sub-array for multipleChoices and   */
+  /* Execute a sub-loop iterations [k] through sub-array for multipleChoices and
+     dynamically store values within the div into "data-Answer" and "data-multipleChoices", then
+     set the whole div as the var inputRadio's JQuery selector. */
 
   /* NOTE on Bootstrap's form with radio buttons below: <div class="form-check"> is for checkboxes and radio buttons.
     <input> and <label> are SIBLING ELEMENTS as opposed to <input> within a <label>; thus, you must specify BOTH
@@ -119,11 +121,11 @@ for (let i = 0; i < questions.length; i++) {
 
   for (let k = 0; k < questions[i].multipleChoices.length; k++) {
     var inputRadio = $(
-      "<div class='form-check'><input class='form-check-input answerRadioButton' data-Answer='"+ questions[i].Answer+"' data-multipleChoices='"+ questions[i].multipleChoices[k]+"' type='radio'> <label class='form-check-label answerlabel'   for='exampleRadios1'>" +
+      "<div class='form-check'><input class='form-check-input answerRadioButton' data-Answer='"+ questions[i].Answer+"' data-multipleChoices='"+ questions[i].multipleChoices[k]+"' type='radio' id='radioList'> <label class='form-check-label answerLabel' for='radioList'>" +
         questions[i].multipleChoices[k] +
         "</label></div>"
     );
-    $("#showQandA").append(inputRadio);
+    $("#showQandA").append(inputRadio);  // <br> added for line break between each output
   }
 }
 
