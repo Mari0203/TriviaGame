@@ -106,9 +106,13 @@ $("#results").hide(); // Hide the selected element, #results
 and print each one after another with .append into showQandA div */
 
 for (let i = 0; i < questions.length; i++) {
-  var newDiv = $("<div>");
-  newDiv.html(questions[i].Q);
-  $("#showQandA").append(newDiv);
+  var showQuestion = $("<div>");
+  showQuestion.html(questions[i].Q);
+  
+  // .html($("#showQandA").html() + "<br>") added to insert line break after each showQuestion output.
+  $("#showQandA").append(showQuestion).html($("#showQandA").html() + "<br>");
+
+
 
   /* Execute a sub-loop iterations [k] through sub-array for multipleChoices and
      dynamically store values within the div into "data-Answer" and "data-multipleChoices", then
@@ -121,11 +125,16 @@ for (let i = 0; i < questions.length; i++) {
 
   for (let k = 0; k < questions[i].multipleChoices.length; k++) {
     var inputRadio = $(
-      "<div class='form-check'><input class='form-check-input answerRadioButton' data-Answer='"+ questions[i].Answer+"' data-multipleChoices='"+ questions[i].multipleChoices[k]+"' type='radio' id='radioList'> <label class='form-check-label answerLabel' for='radioList'>" +
+      "<div class='form-check'><input class='form-check-input answerRadioButton' data-Answer='" +
+        questions[i].Answer +
+        "' data-multipleChoices='" +
+        questions[i].multipleChoices[k] +
+        "' type='radio' id='radioList'> <label class='form-check-label answerLabel' for='radioList'>" +
         questions[i].multipleChoices[k] +
         "</label></div>"
     );
-    $("#showQandA").append(inputRadio);  // <br> added for line break between each output
+    // .html($("#showQandA").html() + "<br>") added to insert line break between radio button choices.
+    $("#showQandA").append(inputRadio).html($("#showQandA").html() + "<br>");
   }
 }
 
@@ -134,8 +143,7 @@ $(".answerRadioButton").on("click", function() {
   if ($(this).attr("data-Answer") === $(this).attr("data-multipleChoices")) {
     alert("YES! " + $(this).attr("data-Answer") + " is the correct answer!");
     correctAnswer++;
-  } 
-  else {
+  } else {
     alert("NOPE! Wrong answer.");
     wrongAnswer++;
   }
@@ -146,6 +154,11 @@ $(".answerRadioButton").on("click", function() {
 // Show score results when a user click 'Done! Check Score' button:
 $("#done-btn").on("click", function() {
   $("#results").show();
-  alert("Your score: " + (correctAnswer/questions.length)*100 + "%");
+  alert("Your score: " + (correctAnswer / questions.length) * 100 + "%");
 });
 
+// test
+// $(".test").html("hello").append("<br/> how do you do?");
+$(".test")
+  .text("Testinggggg")
+  .html($(".test").html() + "how do you do? ");
