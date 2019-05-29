@@ -28,3 +28,20 @@ h4 {
 .btn-primary:hover {
     background-color: #3063d3e7;
 }
+
+.btn-success:hover {
+    background-color: rgb(31, 71, 31);
+}
+
+footer {
+    color: whitesmoke;
+    background-color: #726a6a;
+    padding: .25rem;
+    margin-top: 50px;
+    margin-bottom: 0;
+}
+
+#contentReference {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin-top: 1rem;
+}
