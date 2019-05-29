@@ -34,6 +34,8 @@
                     <li>Watch the remaining time!</li>
                     <li>Warning: Answers may have you crying with laughter.</li>
                 </ul>
+
+                <button type="button" class="btn btn-primary" id="start-btn">Start Game</button>
             </div>
             <div class="col-lg-4">
                 <img src="assets/images/Fire_Salamanders.png" alt="Fire_Salamanders" class="img-fluid" width="300px">
@@ -44,24 +46,65 @@
 
     <!-- Main: QUESTIONNAIRE -->
     <div class="container">
-        <div class="row">
+        <div class="row" id="startTrivia">
+      
 
+            <div id="showPossibleAnswers"></div> <!--- Answer Choices with Radio Buttons -->
+<!-- 
+            <div class="form-check">
+                <input class="form-check-input answerRadioButton" type="radio" name="exampleRadios" id="answerChoice1" value="option1"
+                    checked>
+                <label class="form-check-label" id="answerlabel0" for="exampleRadios1">
+                   
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input answerRadioButton" type="radio" name="exampleRadios" id="answerChoice2" value="option2">
+                <label class="form-check-label"  id="answerlabel1" for="exampleRadios2">
+                    
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input answerRadioButton" type="radio" name="exampleRadios" id="answerChoice3" value="option3"
+                     >
+                <label class="form-check-label" id="answerlabel2" for="exampleRadios3">
+                  
+                </label>
+            </div>
+
+            <div class="form-check">
+                    <input class="form-check-input answerRadioButton" type="radio" name="exampleRadios" id="answerChoice3" value="option3"
+                         >
+                    <label class="form-check-label" id="answerlabel3" for="exampleRadios3">
+                         
+                    </label>
+                </div> -->
+
+                <button type="button" class="btn btn-success" id="submit-btn">Submit</button>
         </div>
-        <div id="buttons">
-            <button id="submit">Submit</button>
-        </div>
+        <div class="row" id="results"></div>
+
+
+    </div>
+
+
+
     </div>
 
     <!-- Footer -->
     <footer>
         <div class="container-fluid padding">
-           <p class="text-center">Trivia Content Provided by "SAD ANIMAL FACTS" by Brooke Barker. Copyright &copy; 2016 </p> 
+            <p class="text-center">Trivia Content Provided by "SAD ANIMAL FACTS" by Brooke Barker. Copyright &copy; 2016
+            </p>
         </div>
     </footer>
 
     <!-- jQuery, javascript file for the Bootstrap's javascript file to function -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>    
 
+    <!-- Javascript -->
+    <script src="assets/javascript/app.js"></script>
 </body>
 
 </html>

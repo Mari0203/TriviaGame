@@ -1,56 +1,76 @@
 // Timer Display
-// These codes will run as soon as the page loads:
 window.onload = function() {
-    $("#answerSelection").on("click", start); // Start the timer when the first answer is selected.
-    $("#submit").on("click", stop);  // stop the timer when the player click the Submit button.
+  $("#start-btn").on("click", start); // Start the timer when the first answer is selected.
+  $("#submit").on("click", stop); // stop the timer when the player click the Submit button.
 };
 
-$("#timer-display").text("00:00"); // Change the "timer-display" div to "00:00"
-
-setTimout(sixtySeconds, 1000 * 60); // Times out after 60 seconds
+var timerCount = 30;
 
 // Use setInterval to start the count here and set the clock to running.
+var intervalId;
+
 function start() {
-    if (!clockRunning) {
-        intervalId = setInterval(count, 1000);
-        clockRunning = true;
-    }
+  intervalId = setInterval(decrement, 1000);
 }
 
-function timeConverter(t) {
+function decrement() {
+  $("#startTrivia").show();
+  timerCount--;
+  $("#timer-display").html("00:" + timerCount); // Change the "timer-display" div to "00:00"
+  console.log(timerCount);
 
-    var minutes = Math.floor(t / 60);
-    var seconds = t - (minutes * 60);
-  
-    if (seconds < 10) {
-      seconds = "0" + seconds;
-    }
-  
-    if (minutes === 0) {
-      minutes = "00";
-    }
-    else if (minutes < 10) {
-      minutes = "0" + minutes;
-    }
-  
-    return minutes + ":" + seconds;
+  if (timerCount === 0) {
+    // stop();
+    clearInterval(intervalId);
+    alert("Time Up!");
+
+
+    var resultsDiv=$("<div>")
+       resultsDiv.append("Correct Answer: " +correctAnswer)
+       resultsDiv.append("Incorrect Answer: " +incorrectAnswer)
+       resultsDiv.append("unAnswer: " + unAnswer)
+       $(".results").append(resultsDiv)
+    $(".results").show();
+    $("#startTrivia").hide();
   }
+}
 
-// Example code from SimpleTimer:
-setTimeout(fiveSeconds, 1000 * 5);
-setTimeout(tenSeconds, 1000 * 10);
-setTimeout(timeUp, 1000 * 15);
+var questions = [
+  { Q: "question 1: ", R: "a1", A: ["a1", " a2", " a3", " a4"] },
+  { Q: "question 2", R: "a3", A: ["a1", " a2", " a3", " a4"] }
+];
 
-function tenSeconds() {
-    // in the element with an id of time-left add an h2 saying About 5 Seconds Left!
-    // console log 5 seconds left
-    $("#time-left").append("<h2>About 5 Seconds Left!</h2>");
-    console.log("5 seconds left");
+var correctAnswer=0;
+var incorrectAnswer=0;
+var unAnswer=0;
+$(".results").hide();
+
+for (let i = 0; i < questions.length; i++) {
+  var newDiv = $("<div>");
+  newDiv.text(questions[i].Q);
+  $("#showPossibleAnswers").append(newDiv);
+
+  for (let j = 0; j < questions[i].A.length; j++) {
+      var inputRadio=$("<div class='form-check'><input class='form-check-input answerRadioButton' data-rightAnswer='" + questions[i].R + "' data-answer='"+questions[i].A[j]+"'  type='radio' name='exampleRadios' id='answerChoice1' value='option1' checked> <label class='form-check-label answerlabel'   for='exampleRadios1'>"+ questions[i].A[j] +"</label></div>");
+    // newDiv.attr("data-answer", question[i].A[j]);
+    $("#showPossibleAnswers").append(inputRadio);
   }
-  
-  function timeUp() {
-    // in the element with an id of time-left add an h2 saying Time's Up!
-    // console log done
-    console.log("done");
-    $("#time-left").append("<h2>Time's Up!</h2>");
-    console.log("time is up")
+}
+
+$(".answerRadioButton").on("click", function(){
+
+  if($(this).attr("data-answer")===$(this).attr("data-rightAnswer")){
+    alert($(this).attr("data-rightAnswer"))
+    correctAnswer++;
+  }
+     else{
+      alert("wrong answer")
+      incorrectAnswer++;
+     }
+   
+     unAnswer= questions.length - correctAnswer -incorrectAnswer;
+
+     
+
+
+})
