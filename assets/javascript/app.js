@@ -108,11 +108,11 @@ and print each one after another with .append into showQandA div */
 for (let i = 0; i < questions.length; i++) {
   var showQuestion = $("<div>");
   showQuestion.html(questions[i].Q);
-  
+
   // .html($("#showQandA").html() + "<br>") added to insert line break after each showQuestion output.
-  $("#showQandA").append(showQuestion).html($("#showQandA").html() + "<br>");
-
-
+  $("#showQandA")
+    .append(showQuestion)
+    .html($("#showQandA").html() + "<br>");
 
   /* Execute a sub-loop iterations [k] through sub-array for multipleChoices and
      dynamically store values within the div into "data-Answer" and "data-multipleChoices", then
@@ -134,7 +134,9 @@ for (let i = 0; i < questions.length; i++) {
         "</label></div>"
     );
     // .html($("#showQandA").html() + "<br>") added to insert line break between radio button choices.
-    $("#showQandA").append(inputRadio).html($("#showQandA").html() + "<br>");
+    $("#showQandA")
+      .append(inputRadio)
+      .html($("#showQandA").html() + "<br>");
   }
 }
 
@@ -157,8 +159,3 @@ $("#done-btn").on("click", function() {
   alert("Your score: " + (correctAnswer / questions.length) * 100 + "%");
 });
 
-// test
-// $(".test").html("hello").append("<br/> how do you do?");
-$(".test")
-  .text("Testinggggg")
-  .html($(".test").html() + "how do you do? ");

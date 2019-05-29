@@ -29,8 +29,9 @@ h2 {
     background-color: #3063d3e7;
 }
 
-.btn-success:hover {
-    background-color: rgb(31, 71, 31);
+.main-section {
+    background-color: rgb(248, 239, 239);
+    padding: 30px;
 }
 
 ul {
