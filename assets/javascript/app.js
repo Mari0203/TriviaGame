@@ -60,7 +60,7 @@ var questions = [
   {
     Q:
       "Q6: Black eagles watch and do not interfer when their children _______.",
-    Answer: "fight to the death",
+    Answer: "fight each other to the death",
     multipleChoices: [
       "get caught by prey",
       "dance to disco",
@@ -119,7 +119,7 @@ for (let i = 0; i < questions.length; i++) {
 
   for (let k = 0; k < questions[i].multipleChoices.length; k++) {
     var inputRadio = $(
-      "<div class='form-check'><input class='form-check-input type=answerRadioButton' data-Answer='"+ questions[i].Answer+"' data-multipleChoices='"+ questions[i].multipleChoices[k]+"' type='radio' name='Radios' id='answerChoice1' value='option1' checked> <label class='form-check-label answerlabel'   for='exampleRadios1'>" +
+      "<div class='form-check'><input class='form-check-input answerRadioButton' data-Answer='"+ questions[i].Answer+"' data-multipleChoices='"+ questions[i].multipleChoices[k]+"' type='radio'> <label class='form-check-label answerlabel'   for='exampleRadios1'>" +
         questions[i].multipleChoices[k] +
         "</label></div>"
     );
@@ -130,7 +130,7 @@ for (let i = 0; i < questions.length; i++) {
 /* Validates the user's radio button selection content against the Answer when clicked. */
 $(".answerRadioButton").on("click", function() {
   if ($(this).attr("data-Answer") === $(this).attr("data-multipleChoices")) {
-    alert("YAY! " + $(this).attr("data-Answer") + "is correct!");
+    alert("YES! " + $(this).attr("data-Answer") + " is the correct answer!");
     correctAnswer++;
   } 
   else {
