@@ -1,7 +1,7 @@
 // Timer Display
 window.onload = function() {
   $("#start-btn").on("click", start); // Start the timer when the first answer is selected.
-  $("#stop").on("click", stop); // stop the timer when the player click the Submit button.
+  $("#done-btn").on("click", stop); // stop the timer when the player click the Submit button.
 };
 
 var timerCount = 60; // Start the timer at 60 seconds.
