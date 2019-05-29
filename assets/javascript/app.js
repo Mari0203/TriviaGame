@@ -4,7 +4,7 @@ window.onload = function() {
   $("#submit").on("click", stop); // stop the timer when the player click the Submit button.
 };
 
-var timerCount = 30;
+var timerCount = 5;
 
 // Use setInterval to start the count here and set the clock to running.
 var intervalId;
@@ -26,11 +26,11 @@ function decrement() {
 
 
     var resultsDiv=$("<div>")
-       resultsDiv.append("Correct Answer: " +correctAnswer)
-       resultsDiv.append("Incorrect Answer: " +incorrectAnswer)
-       resultsDiv.append("unAnswer: " + unAnswer)
-       $(".results").append(resultsDiv)
-    $(".results").show();
+       resultsDiv.append("Correct Answer: " +correctAnswer+"<br>")
+       resultsDiv.append("Incorrect Answer: " +incorrectAnswer +"<br>")
+       resultsDiv.append("unAnswer: " + unAnswer+"<br>")
+       $("#results").append(resultsDiv)
+    $("#results").show();
     $("#startTrivia").hide();
   }
 }
@@ -43,7 +43,7 @@ var questions = [
 var correctAnswer=0;
 var incorrectAnswer=0;
 var unAnswer=0;
-$(".results").hide();
+$("#results").hide();
 
 for (let i = 0; i < questions.length; i++) {
   var newDiv = $("<div>");
