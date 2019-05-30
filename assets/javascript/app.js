@@ -3,14 +3,24 @@ window.onload = function() {
   $("#showQandA").hide();
 };
 
+// Enable background game music to play in loop.  Code reference: https://www.w3schools.com/js/js_function_invocation.asp
+var audioGame = new Audio("assets/audio/Pacman_intro.mp3");  
+function enableLoop() {  
+  audioGame.loop = true;
+}
+
 var timerCount = 15; // Start the timer at 60 seconds.
 var intervalId; // Set intervalId variable to store output of each decrement
 
-$("#start-btn").on("click", start); // Start the timer when the "Start Game" button is clicked.
-function start() {
+// Functions to be executed when 'Start Game' button is clicked:
+$("#start-btn").on("click", start);
+function start() {    /// Start the timer.
   intervalId = setInterval(decrement, 1000); // Executes decrement function once every 1 second.
   $("#showQandA").show(); // Show Q&A's
+  audioGame.play();  // Plays background music when Game is started.
 }
+
+
 
 function decrement() {
   $("#startTrivia").show(); // Displays questionnaires
@@ -22,6 +32,7 @@ function decrement() {
     clearInterval(intervalId); // Stop and clears a timer set with setInterval() method
     alert("Time's Up!");
     $("#results").show();  // Show the player's answer selection tally.
+    audioGame.pause();  // Stop the music.
   }
   return 
 }
