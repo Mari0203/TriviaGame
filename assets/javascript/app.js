@@ -21,7 +21,6 @@ function start() {    /// Start the timer.
 }
 
 
-
 function decrement() {
   $("#startTrivia").show(); // Displays questionnaires
   timerCount--; // Decrement the value by 1
