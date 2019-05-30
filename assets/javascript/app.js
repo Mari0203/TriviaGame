@@ -1,20 +1,21 @@
-// Timer Display
+// Hides the Trivia Game Q & A's when the window loads until the player click "Start Game".
 window.onload = function() {
-  $("#start-btn").on("click", start); // Start the timer when the first answer is selected.
+  $("#showQandA").hide();
 };
 
-var timerCount = 45; // Start the timer at 60 seconds.
+var timerCount = 60; // Start the timer at 60 seconds.
 var intervalId; // Set intervalId variable to store output of each decrement
 
+$("#start-btn").on("click", start); // Start the timer when the "Start Game" button is clicked.
 function start() {
   intervalId = setInterval(decrement, 1000); // Executes decrement function once every 1 second.
+  $("#showQandA").show();
 }
 
 function decrement() {
   $("#startTrivia").show(); // Displays questionnaires
   timerCount--; // Decrement the value by 1
   $("#timer-display").html("00:" + timerCount); // Update the "timer-display" div with new value of timerCount
-  //  console.log(timerCount);
 
   if (timerCount === 0) {
     clearInterval(intervalId); // Stop and clears a timer set with setInterval() method
@@ -109,10 +110,8 @@ for (let i = 0; i < questions.length; i++) {
   var showQuestion = $("<div>");
   showQuestion.html(questions[i].Q);
 
-  // .html($("#showQandA").html() + "<br>") added to insert line break after each showQuestion output.
-  $("#showQandA")
-    .append(showQuestion)
-    .html($("#showQandA").html() + "<br>");
+  // .html($("#showQandA").html() + "<br>") added to insert line break after each showQuestion output.  Code reference: Stack overflow
+  $("#showQandA").append(showQuestion).html($("#showQandA").html() + "<br>");
 
   /* Execute a sub-loop iterations [k] through sub-array for multipleChoices and
      dynamically store values within the div into "data-Answer" and "data-multipleChoices", then
@@ -133,12 +132,16 @@ for (let i = 0; i < questions.length; i++) {
         questions[i].multipleChoices[k] +
         "</label></div>"
     );
-    // .html($("#showQandA").html() + "<br>") added to insert line break between radio button choices.
-    $("#showQandA")
-      .append(inputRadio)
-      .html($("#showQandA").html() + "<br>");
+   
+    $("#showQandA").append(inputRadio).html($("#showQandA").html() + "<br>");
   }
 }
+
+$("").attr("style", "font-weight: bold; color; #726a6a");
+
+// ----- omit below codes: ---- //
+/* document.getElementById("#showQandA").setAttribute(
+  "style", "font-weight: bold; color:#726a6a;"); */
 
 /* Validates the user's radio button selection content against the Answer when clicked. */
 $(".answerRadioButton").on("click", function() {
@@ -156,6 +159,6 @@ $(".answerRadioButton").on("click", function() {
 // Show score results when a user click 'Done! Check Score' button:
 $("#done-btn").on("click", function() {
   $("#results").show();
-  alert("Your score: " + (correctAnswer / questions.length) * 100 + "%");
+  alert("Your final score: " + (correctAnswer / questions.length) * 100 + "%");
 });
 

@@ -17,7 +17,7 @@ h2 {
 
 .subtitle {
     font-size: 180%;
-}
+    }
 
 /*Overrides the default bootstrap css styling with '!important' to make the button bigger */
 .badge-danger {
@@ -27,6 +27,11 @@ h2 {
 /* Change the Start Game button color slightly when mouse is hovered over */
 .btn-primary:hover {
     background-color: #3063d3e7;
+}
+
+.col-lg-6 {
+    /* sbackground-color: rgba(245, 245, 62, 0.87); */
+    padding: 30px 0px;
 }
 
 .main-section {
@@ -42,7 +47,7 @@ footer {
     color: whitesmoke;
     background-color: #726a6a;
     padding: .25rem;
-    margin-top: 50px;
+    /* margin-top: 50px; */
     margin-bottom: 0;
 }
 
