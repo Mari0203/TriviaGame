@@ -3,33 +3,36 @@ window.onload = function() {
   $("#showQandA").hide();
 };
 
-var timerCount = 60; // Start the timer at 60 seconds.
+var timerCount = 15; // Start the timer at 60 seconds.
 var intervalId; // Set intervalId variable to store output of each decrement
 
 $("#start-btn").on("click", start); // Start the timer when the "Start Game" button is clicked.
 function start() {
   intervalId = setInterval(decrement, 1000); // Executes decrement function once every 1 second.
-  $("#showQandA").show();
+  $("#showQandA").show(); // Show Q&A's
 }
 
 function decrement() {
   $("#startTrivia").show(); // Displays questionnaires
   timerCount--; // Decrement the value by 1
-  $("#timer-display").html("00:" + timerCount); // Update the "timer-display" div with new value of timerCount
+    
+   $("#timer-display").html("00:" + timerCount); // Update the "timer-display" div with new value of timerCount
 
   if (timerCount === 0) {
     clearInterval(intervalId); // Stop and clears a timer set with setInterval() method
     alert("Time's Up!");
-
-    var resultsDiv = $("<div>");
-    resultsDiv.append("Correct Answer: " + correctAnswer + "<br>");
-    resultsDiv.append("Wrong Answer: " + wrongAnswer + "<br>");
-    resultsDiv.append("unAnswered: " + unAnswered + "<br>");
-    $("#results").append(resultsDiv);
-    $("#results").show();
-    $("#startTrivia").hide();
+    $("#results").show();  // Show the player's answer selection tally.
   }
+  return 
 }
+
+
+// Showing the player's answer selection tally.
+var resultsDiv = $("<div>");
+resultsDiv.append("Correct Answer: " + correctAnswer + "<br>");
+resultsDiv.append("Wrong Answer: " + wrongAnswer + "<br>");
+resultsDiv.append("un-answered: " + unAnswered + "<br>");
+$("#results").append(resultsDiv);
 
 // Store the Questions, the Answers and multipleChoice selections as key-value pair objects in the array, questions:
 var questions = [
@@ -111,7 +114,9 @@ for (let i = 0; i < questions.length; i++) {
   showQuestion.html(questions[i].Q);
 
   // .html($("#showQandA").html() + "<br>") added to insert line break after each showQuestion output.  Code reference: Stack overflow
-  $("#showQandA").append(showQuestion).html($("#showQandA").html() + "<br>");
+  $("#showQandA")
+    .append(showQuestion)
+    .html($("#showQandA").html() + "<br>");
 
   /* Execute a sub-loop iterations [k] through sub-array for multipleChoices and
      dynamically store values within the div into "data-Answer" and "data-multipleChoices", then
@@ -132,8 +137,10 @@ for (let i = 0; i < questions.length; i++) {
         questions[i].multipleChoices[k] +
         "</label></div>"
     );
-   
-    $("#showQandA").append(inputRadio).html($("#showQandA").html() + "<br>");
+
+    $("#showQandA")
+      .append(inputRadio)
+      .html($("#showQandA").html() + "<br>");
   }
 }
 
@@ -158,7 +165,7 @@ $(".answerRadioButton").on("click", function() {
 
 // Show score results when a user click 'Done! Check Score' button:
 $("#done-btn").on("click", function() {
+  $("#showQandA").show();
   $("#results").show();
   alert("Your final score: " + (correctAnswer / questions.length) * 100 + "%");
 });
-

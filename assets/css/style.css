@@ -43,6 +43,14 @@ ul {
     font-size: .95em;
 }
 
+#results {
+    padding-top: 25px;
+    font-family: "Schoolbell", cursive;
+    font-family: "Pragati Narrow", sans-serif;
+    font-family: "Noto Sans JP", sans-serif;
+    font-family: "Source Sans Pro", sans-serif;
+}
+
 footer {
     color: whitesmoke;
     background-color: #726a6a;
