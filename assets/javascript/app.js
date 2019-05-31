@@ -7,7 +7,7 @@ window.onload = function() {
 // var audioGame = new Audio("assets/audio/Pacman_intro.mp3");
  
 
-var timerCount = 60; // Start the timer at 60 seconds.
+var timerCount = 13; // Start the timer at 60 seconds.
 var intervalId; // Set intervalId variable to store output of each decrement
 
 // Functions to be executed when 'Start Game' button is clicked:
@@ -34,6 +34,11 @@ function decrement() {
   timerCount--; // Decrement the value by 1
 
   $("#timer-display").html("00:" + timerCount); // Update the "timer-display" div with new value of timerCount
+
+  if (timerCount < 10) {
+    timerCount = "0" + timerCount; // To adjust the timer display when the time hits single-digit.
+    $("#timer-display").html("00:" + timerCount);
+  }
 
   if (timerCount === 0) {
     clearInterval(intervalId); // Stop and clears a timer set with setInterval() method
