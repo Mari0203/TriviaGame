@@ -4,38 +4,49 @@ window.onload = function() {
 };
 
 // Enable background game music to play in loop.  Code reference: https://www.w3schools.com/js/js_function_invocation.asp
-var audioGame = new Audio("assets/audio/Pacman_intro.mp3");  
-function enableLoop() {  
-  audioGame.loop = true;
-}
+var audioGame = new Audio("assets/audio/Pacman_intro.mp3");
+ 
 
 var timerCount = 15; // Start the timer at 60 seconds.
 var intervalId; // Set intervalId variable to store output of each decrement
 
 // Functions to be executed when 'Start Game' button is clicked:
 $("#start-btn").on("click", start);
-function start() {    /// Start the timer.
+function start() {
+  /// Start the timer.
   intervalId = setInterval(decrement, 1000); // Executes decrement function once every 1 second.
   $("#showQandA").show(); // Show Q&A's
-  audioGame.play();  // Plays background music when Game is started.
-}
 
+  
+  audioGame.addEventListener(
+    "ended",
+    function() {
+      this.currentTime = 0;
+      this.play();
+    },
+    false
+  );
+  audioGame.play();
+}
 
 function decrement() {
   $("#startTrivia").show(); // Displays questionnaires
   timerCount--; // Decrement the value by 1
-    
-   $("#timer-display").html("00:" + timerCount); // Update the "timer-display" div with new value of timerCount
+
+  $("#timer-display").html("00:" + timerCount); // Update the "timer-display" div with new value of timerCount
 
   if (timerCount === 0) {
     clearInterval(intervalId); // Stop and clears a timer set with setInterval() method
     alert("Time's Up!");
-    $("#results").show();  // Show the player's answer selection tally.
-    audioGame.pause();  // Stop the music.
+    $("#results").show(); // Show the player's answer selection tally.
+    audioGame.pause(); // Stop the music.
   }
-  return 
+  return;
 }
-
+// Store scores based on correct and wrong answers selected:
+var correctAnswer = 0;
+var wrongAnswer = 0;
+var unAnswered = 0;
 
 // Showing the player's answer selection tally.
 var resultsDiv = $("<div>");
@@ -110,23 +121,20 @@ var questions = [
   }
 ];
 
-// Store scores based on correct and wrong answers selected:
-var correctAnswer = 0;
-var wrongAnswer = 0;
-var unAnswered = 0;
+
 $("#results").hide(); // Hide the selected element, #results
 
 /* Execute a loop iterations [i] through key-value pairs for each object, Q in questions array; 
 and print each one after another with .append into showQandA div */
 
 for (let i = 0; i < questions.length; i++) {
-  var showQuestion = $("<div>");
-  showQuestion.html(questions[i].Q);
+    var showQuestion = $("<div>");
+    showQuestion.html("<b>"+ questions[i].Q+"<br><br>");
+    showQuestion.addClass("question-styling");
 
   // .html($("#showQandA").html() + "<br>") added to insert line break after each showQuestion output.  Code reference: Stack overflow
   $("#showQandA")
-    .append(showQuestion)
-    .html($("#showQandA").html() + "<br>");
+    .append(showQuestion); 
 
   /* Execute a sub-loop iterations [k] through sub-array for multipleChoices and
      dynamically store values within the div into "data-Answer" and "data-multipleChoices", then
@@ -139,7 +147,7 @@ for (let i = 0; i < questions.length; i++) {
 
   for (let k = 0; k < questions[i].multipleChoices.length; k++) {
     var inputRadio = $(
-      "<div class='form-check'><input class='form-check-input answerRadioButton' data-Answer='" +
+      "<div class='form-check'><input name='optradio' class='form-check-input answerRadioButton' data-Answer='" +
         questions[i].Answer +
         "' data-multipleChoices='" +
         questions[i].multipleChoices[k] +
@@ -177,5 +185,6 @@ $(".answerRadioButton").on("click", function() {
 $("#done-btn").on("click", function() {
   $("#showQandA").show();
   $("#results").show();
+  
   alert("Your final score: " + (correctAnswer / questions.length) * 100 + "%");
 });

@@ -39,6 +39,11 @@ h2 {
     padding: 30px;
 }
 
+.question-styling {
+    color: rgb(51, 20, 20);
+    font-weight: bold;
+}
+
 ul {
     font-size: .95em;
 }
