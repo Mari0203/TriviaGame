@@ -6,6 +6,7 @@
 .big-banner {
   background-image: url("../images/Tree_Background_grey.jpg");
   font-family: "Schoolbell", cursive;
+  opacity: 0.7;
   }
 
 h2 {

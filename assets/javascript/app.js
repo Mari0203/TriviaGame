@@ -4,10 +4,10 @@ window.onload = function() {
 };
 
 // Enable background game music to play in loop.  Code reference: https://www.w3schools.com/js/js_function_invocation.asp
-var audioGame = new Audio("assets/audio/Pacman_intro.mp3");
+// var audioGame = new Audio("assets/audio/Pacman_intro.mp3");
  
 
-var timerCount = 15; // Start the timer at 60 seconds.
+var timerCount = 60; // Start the timer at 60 seconds.
 var intervalId; // Set intervalId variable to store output of each decrement
 
 // Functions to be executed when 'Start Game' button is clicked:
@@ -129,7 +129,7 @@ and print each one after another with .append into showQandA div */
 
 for (let i = 0; i < questions.length; i++) {
     var showQuestion = $("<div>");
-    showQuestion.html("<b>"+ questions[i].Q+"<br><br>");
+    showQuestion.html("<b><br>"+ questions[i].Q + "<br><br>");
     showQuestion.addClass("question-styling");
 
   // .html($("#showQandA").html() + "<br>") added to insert line break after each showQuestion output.  Code reference: Stack overflow
@@ -158,7 +158,7 @@ for (let i = 0; i < questions.length; i++) {
 
     $("#showQandA")
       .append(inputRadio)
-      .html($("#showQandA").html() + "<br>");
+      .html($("#showQandA").html());
   }
 }
 
