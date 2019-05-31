@@ -4,10 +4,10 @@ window.onload = function() {
 };
 
 // Enable background game music to play in loop.  Code reference: https://www.w3schools.com/js/js_function_invocation.asp
-// var audioGame = new Audio("assets/audio/Pacman_intro.mp3");
+var audioGame = new Audio("assets/audio/Pacman_intro.mp3");
  
 
-var timerCount = 13; // Start the timer at 60 seconds.
+var timerCount = 60; // Start the timer at 60 seconds.
 var intervalId; // Set intervalId variable to store output of each decrement
 
 // Functions to be executed when 'Start Game' button is clicked:
