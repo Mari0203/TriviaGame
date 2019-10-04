@@ -6,7 +6,7 @@ window.onload = function() {
 // // Enable background game music to play in loop.  Code reference: https://www.w3schools.com/js/js_function_invocation.asp
 // var audioGame = new Audio("assets/audio/Pacman_intro.mp3");
 
-var timerCount = 11; // Start the timer at 60 seconds.
+var timerCount = 3; // Start the timer at 60 seconds.
 var intervalId; // Set intervalId variable to store output of each decrement
 
 // Functions to be executed when 'Start Game' button is clicked:
@@ -136,12 +136,16 @@ $("#results").hide(); // Hide the selected element, #results
 and print each one after another with .append into showQandA div */
 
 for (let i = 0; i < questions.length; i++) {
-  var showQuestion = $("<div>");
-  showQuestion.html("<b><br>" + questions[i].Q + "<br><br>");
+  var qDiv = `<div question=\"${i}\">`;
+  // var showQuestion = $("<div>");
+  var showQuestion = $(qDiv);
+
+  showQuestion.html("<b><br>" + questions[i].Q + "</b><br><br>");
   showQuestion.addClass("question-styling");
 
   // .html($("#showQandA").html() + "<br>") added to insert line break after each showQuestion output.  Code reference: Stack overflow
   $("#showQandA").append(showQuestion);
+  $("#showQandA").append("<fieldset>");
 
   /* Execute a sub-loop iterations [k] through sub-array for multipleChoices and
      dynamically store values within the div into "data-Answer" and "data-multipleChoices", then
@@ -163,9 +167,10 @@ for (let i = 0; i < questions.length; i++) {
         "</label></div>"
     );
 
-    $("#showQandA")
-      .append(inputRadio)
-      .html($("#showQandA").html());
+    $("#showQandA").append(inputRadio);
+    $("#showQandA").append("</fieldset>");
+    
+    // .html($("#showQandA").html());
   }
 }
 
@@ -175,13 +180,18 @@ $("").attr("style", "font-weight: bold; color; #726a6a");
 /* document.getElementById("#showQandA").setAttribute(
   "style", "font-weight: bold; color:#726a6a;"); */
 
+// Answers array  
+var answers = new Array(10);
+
 /* Validates the user's radio button selection content against the Answer when clicked. */
 $(".answerRadioButton").on("click", function() {
+  console.log("Question # :", $(this).parent().attr("question"));
+
   if ($(this).attr("data-Answer") === $(this).attr("data-multipleChoices")) {
-    alert("YES! " + $(this).attr("data-Answer") + " is the correct answer!");
+    // alert("YES! " + $(this).attr("data-Answer") + " is the correct answer!");
     correctAnswer++;
   } else {
-    alert("NOPE! Wrong answer.");
+    // alert("NOPE! Wrong answer.");
     wrongAnswer++;
   }
   // Calculates the unAnswered value
