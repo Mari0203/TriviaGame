@@ -145,8 +145,7 @@ for (let i = 0; i < questions.length; i++) {
 
   // .html($("#showQandA").html() + "<br>") added to insert line break after each showQuestion output.  Code reference: Stack overflow
   $("#showQandA").append(showQuestion);
-  $("#showQandA").append("<fieldset>");
-
+ 
   /* Execute a sub-loop iterations [k] through sub-array for multipleChoices and
      dynamically store values within the div into "data-Answer" and "data-multipleChoices", then
      set the whole div as the var inputRadio's JQuery selector. */
@@ -158,7 +157,7 @@ for (let i = 0; i < questions.length; i++) {
 
   for (let k = 0; k < questions[i].multipleChoices.length; k++) {
     var inputRadio = $(
-      "<div class='form-check'><input name='optradio' class='form-check-input answerRadioButton' data-Answer='" +
+      "<div class='form-check'><input name='optradio"+i+"' class='form-check-input answerRadioButton' data-Answer='" +
         questions[i].Answer +
         "' data-multipleChoices='" +
         questions[i].multipleChoices[k] +
@@ -168,20 +167,15 @@ for (let i = 0; i < questions.length; i++) {
     );
 
     $("#showQandA").append(inputRadio);
-    $("#showQandA").append("</fieldset>");
-    
+
     // .html($("#showQandA").html());
   }
 }
 
 $("").attr("style", "font-weight: bold; color; #726a6a");
 
-// ----- omit below codes: ---- //
-/* document.getElementById("#showQandA").setAttribute(
-  "style", "font-weight: bold; color:#726a6a;"); */
-
 // Answers array  
-var answers = new Array(10);
+// var answers = new Array(10);
 
 /* Validates the user's radio button selection content against the Answer when clicked. */
 $(".answerRadioButton").on("click", function() {
