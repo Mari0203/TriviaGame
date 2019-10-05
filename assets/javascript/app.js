@@ -50,7 +50,7 @@ function decrement() {
     // audioGame.pause(); // Stop the music.
   }
   return;
-};
+}
 
 // Store scores based on correct and wrong answers selected:
 var correctAnswer = 0;
@@ -59,10 +59,13 @@ var unAnswered = 0;
 
 // Showing the player's answer selection tally.
 var resultsDiv = $("<div>");
-resultsDiv.append("Correct Answer: " + correctAnswer + "<br>");
-resultsDiv.append("Wrong Answer: " + wrongAnswer + "<br>");
-resultsDiv.append("un-answered: " + unAnswered + "<br>");
-$("#results").append(resultsDiv);
+
+function showScores() {
+  resultsDiv.append("Correct Answer: " + correctAnswer + "<br>");
+  resultsDiv.append("Wrong Answer: " + wrongAnswer + "<br>");
+  resultsDiv.append("un-answered: " + unAnswered + "<br>");
+  $("#results").append(resultsDiv);
+}
 
 // Store the Questions, the Answers and multipleChoice selections as key-value pair objects in the array, questions:
 var questions = [
@@ -130,7 +133,8 @@ var questions = [
   }
 ];
 
-$("#results").hide(); // Hide the selected element, #results
+// Hide the selected element, #results
+$("#results").hide();
 
 /* Execute a loop iterations [i] through key-value pairs for each object, Q in questions array; 
 and print each one after another with .append into showQandA div */
@@ -145,7 +149,7 @@ for (let i = 0; i < questions.length; i++) {
 
   // .html($("#showQandA").html() + "<br>") added to insert line break after each showQuestion output.  Code reference: Stack overflow
   $("#showQandA").append(showQuestion);
- 
+
   /* Execute a sub-loop iterations [k] through sub-array for multipleChoices and
      dynamically store values within the div into "data-Answer" and "data-multipleChoices", then
      set the whole div as the var inputRadio's JQuery selector. */
@@ -157,7 +161,9 @@ for (let i = 0; i < questions.length; i++) {
 
   for (let k = 0; k < questions[i].multipleChoices.length; k++) {
     var inputRadio = $(
-      "<div class='form-check'><input name='optradio"+i+"' class='form-check-input answerRadioButton' data-Answer='" +
+      "<div class='form-check'><input name='optradio" +
+        i +
+        "' class='form-check-input answerRadioButton' data-Answer='" +
         questions[i].Answer +
         "' data-multipleChoices='" +
         questions[i].multipleChoices[k] +
@@ -174,12 +180,17 @@ for (let i = 0; i < questions.length; i++) {
 
 $("").attr("style", "font-weight: bold; color; #726a6a");
 
-// Answers array  
+// Answers array
 // var answers = new Array(10);
 
 /* Validates the user's radio button selection content against the Answer when clicked. */
 $(".answerRadioButton").on("click", function() {
-  console.log("Question # :", $(this).parent().attr("question"));
+  console.log(
+    "Question # :",
+    $(this)
+      .parent()
+      .attr("question")
+  );
 
   if ($(this).attr("data-Answer") === $(this).attr("data-multipleChoices")) {
     // alert("YES! " + $(this).attr("data-Answer") + " is the correct answer!");
@@ -196,6 +207,7 @@ $(".answerRadioButton").on("click", function() {
 $("#done-btn").on("click", function() {
   $("#showQandA").show();
   $("#results").show();
+  showScores;
 
   alert("Your final score: " + (correctAnswer / questions.length) * 100 + "%");
 });
