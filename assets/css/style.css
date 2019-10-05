@@ -3,6 +3,7 @@
   background-image: url("../images/Tree_Background_grey.jpg");
   font-family: "Schoolbell", cursive;
   padding: 0;
+  background-size: 30% 100%;
   }
 
 h2 {
@@ -13,7 +14,7 @@ h2 {
 }
 
 .subtitle {
-    font-size: 180%;
+    font-size: 160%;
     }
 
 /*Overrides the default bootstrap css styling with '!important' to make the button bigger */
@@ -53,10 +54,12 @@ ul {
     font-family: "Source Sans Pro", sans-serif;
 }
 
-footer {
+.footer-margin {
     color: whitesmoke;
-    background-color: #726a6a;
+    /* background-color: #726a6a; */
     padding: .25rem;
+    height: 50px;
+    /* margin-top: -50px; */
     margin-bottom: 0;
 }
 
